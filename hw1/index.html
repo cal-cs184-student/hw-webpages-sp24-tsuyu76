@@ -48,35 +48,7 @@
 <p>Show a png screenshot of basic/test4.svg with the default viewing parameters and with the pixel inspector centered on an interesting part of the scene.</p>
 <div align="middle">
   <img src="images/screenshot_2-13_17-4-18.png" align="middle" width="400px"/>
-  <figcaption align="middle">I found this part interesting because it not only looks jaggy, it even splits in the middle, which is definitely bad.</figcaption>
-</div>
-
-<p>Here is an example 2x2 gridlike structure using an HTML table. Each <b>tr</b> is a row and each <b>td</b> is a column in that row. You might find this useful for framing and showing your result images in an organized fashion.</p>
-
-<div align="middle">
-  <table style="width=100%">
-    <tr>
-      <td>
-        <img src="images/image1.png" align="middle" width="400px"/>
-        <figcaption align="middle">Caption goes here.</figcaption>
-      </td>
-      <td>
-        <img src="images/image2.png" align="middle" width="400px"/>
-        <figcaption align="middle">Caption goes here.</figcaption>
-      </td>
-    </tr>
-    <br>
-    <tr>
-      <td>
-        <img src="images/image3.png" align="middle" width="400px"/>
-        <figcaption align="middle">Caption goes here.</figcaption>
-      </td>
-      <td>
-        <img src="images/image4.png" align="middle" width="400px"/>
-        <figcaption align="middle">Caption goes here.</figcaption>
-      </td>
-    </tr>
-  </table>
+  <figcaption align="middle"><font color="#0000FF">I found this part interesting because it not only looks jaggy, it even splits in the middle, which is definitely bad.</font></figcaption>
 </div>
 
 
@@ -109,8 +81,8 @@
 <p>Create an updated version of svg/transforms/robot.svg with cubeman doing something more interesting, like waving or running. Feel free to change his colors or proportions to suit your creativity. Save your svg file as my_robot.svg in your docs/ directory and show a png screenshot of your rendered drawing in your write-up. Explain what you were trying to do with cubeman in words.</p>
 <div align="middle">
   <img src="images/screenshot_2-13_20-30-31.png" align="middle" width="400px"/>
-  <figcaption align="middle">I rotated and translated the rectangles to make the robot looks like putting one hand on his waist and waving the other hand.</figcaption>
-  <figcaption align="middle">I then changed the color of the rectangles to make it look more like a real man, wearing clothes and shoes.</figcaption>
+  <figcaption align="middle"><font color="#0000FF">I rotated and translated the rectangles to make the robot looks like putting one hand on his waist and waving the other hand.</font></figcaption>
+  <figcaption align="middle"><font color="#0000FF">I then changed the color of the rectangles to make it look more like a real man, wearing clothes and shoes.</font></figcaption>
 </div>
 
 <h2 align="middle">Section II: Sampling</h2>
@@ -136,17 +108,34 @@
 <p>Check out the svg files in the svg/texmap/ directory. Use the pixel inspector to find a good example of where bilinear sampling clearly defeats nearest sampling. Show and compare four png screenshots using nearest sampling at 1 sample per pixel, nearest sampling at 16 samples per pixel, bilinear sampling at 1 sample per pixel, and bilinear sampling at 16 samples per pixel.</p>
 <div align="middle">
   <table style="width=100%">
-    <td>
-      <img src="images/screenshot_2-13_22-33-57.png" align="middle" width="400px"/>
-      <figcaption align="middle">nearest sampling</figcaption>
-    </td>
-    <td>
-      <img src="images/screenshot_2-13_22-39-38.png" align="middle" width="400px"/>
-      <figcaption align="middle">bilinear sampling</figcaption>
-    </td>
+    <tr>
+      <td>
+        <img src="images/screenshot_2-13_22-33-57.png" align="middle" width="400px"/>
+        <figcaption align="middle">nearest sampling/sample rate 1</figcaption>
+      </td>
+      <td>
+        <img src="images/screenshot_2-13_22-39-38.png" align="middle" width="400px"/>
+        <figcaption align="middle">bilinear sampling/sample rate 1</figcaption>
+      </td>
+    </tr>
+    <br>
+    <tr>
+      <td>
+        <img src="images/screenshot_2-14_22-17-50.png" align="middle" width="400px"/>
+        <figcaption align="middle">nearest sampling/sample rate 4</figcaption>
+      </td>
+      <td>
+        <img src="images/screenshot_2-14_22-27-32.png" align="middle" width="400px"/>
+        <figcaption align="middle">bilinear sampling/sample rate 4</figcaption>
+      </td>
+    </tr>
   </table>
 </div>
-<p>Sorry that my computer failed to generate the sample result of sample rate 16...Perhaps it's because I didn't optimize my algorithm.</p>
+
+<p><font color="#0000FF">Sorry that my computer failed to generate the sample result of sample rate 16...Perhaps it's because I didn't optimize my algorithm. It took me 50 minutes to get this result and when I was trying to open the pixel inspector, it got stuck forever. So I could just use the screenshot tool on my computer to save it.:(</font></p>
+<div align="middle">
+  <img src="images/Screenshot 2024-02-14 at 20.19.31.png" align="middle" width="400px"/>
+</div>
 
 <p>Comment on the relative differences. Discuss when there will be a large difference between the two methods and why.</p>
 <p><font color="#0000FF">There will be a large difference when texture mapping onto distorted patterns, when textures are displayed smaller than the original resolution, or when there is gradient effect.</font></p>
@@ -158,29 +147,29 @@
 <p><font color="#0000FF">I followed the instruction to calculate and store sp.p_uv, sp.p_dx_uv and sp.p_dy_uv. I then used the formula in the discussion worksheet to calculate the level to choose, and output different values of level according to the chosen method.</font></p>
 
 <p>You can now adjust your sampling technique by selecting pixel sampling, level sampling, or the number of samples per pixel. Describe the tradeoffs between speed, memory usage, and antialiasing power between the three various techniques.</p>
-<p><font color="#0000FF">Pixel sampling is the normal way, and its quality can be improved by bilinear sampling, but will run slower. Level sampling requires less storage, but might cause aliasing in the process of generating mipmaps. Supersampling can improve the quality of pictures but it requires much more storage and runs much more slowly.</font></p>
+<p><font color="#0000FF">Pixel sampling is the normal way(can be regarded as level zero). Its quality can be improved by bilinear sampling, but will run slower. Level sampling saves storage of the texture map, but might cause aliasing in the process of generating mipmaps. Supersampling can be applied while using the other two methods. It improves the quality of pictures but it requires much more judgement and storage and runs much more slowly.</font></p>
 
 <p>Using a png file you find yourself, show us four versions of the image, using the combinations of L_ZERO and P_NEAREST, L_ZERO and P_LINEAR, L_NEAREST and P_NEAREST, as well as L_NEAREST and P_LINEAR.</p>
 <div align="middle">
   <table style="width=100%">
     <tr>
       <td>
-        <img src="images/Screenshot 2024-02-13 at 23.31.07.png" align="middle" width="400px"/>
+        <img src="images/screenshot_2-14_18-15-53.png" align="middle" width="400px"/>
         <figcaption align="middle">L_ZERO and P_NEAREST</figcaption>
       </td>
       <td>
-        <img src="images/Screenshot 2024-02-13 at 23.17.04.png" align="middle" width="400px"/>
+        <img src="images/screenshot_2-14_18-19-27.png" align="middle" width="400px"/>
         <figcaption align="middle">L_ZERO and P_LINEAR</figcaption>
       </td>
     </tr>
     <br>
     <tr>
       <td>
-        <img src="images/Screenshot 2024-02-13 at 23.38.33.png" align="middle" width="400px"/>
+        <img src="images/screenshot_2-14_18-25-52.png" align="middle" width="400px"/>
         <figcaption align="middle">L_NEAREST and P_NEAREST</figcaption>
       </td>
       <td>
-        <img src="images/Screenshot 2024-02-13 at 23.24.41.png" align="middle" width="400px"/>
+        <img src="images/screenshot_2-14_18-22-59.png" align="middle" width="400px"/>
         <figcaption align="middle">L_NEAREST and P_LINEAR</figcaption>
       </td>
     </tr>
